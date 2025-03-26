@@ -4,13 +4,14 @@ import jakarta.persistence.*
 
 // PackMonths.kt
 @Entity
+@Table(name = "packmonths")
 data class PackMonths(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
 
     @ManyToOne
-    @JoinColumn(name = "PACK_CODE", referencedColumnName = "CODE", nullable = false)
+    @JoinColumn(name = "PACK_ID", referencedColumnName = "ID", nullable = false)
     val pack: Pack,
 
     @Column(name = "MONTH_NUMBER", nullable = false)

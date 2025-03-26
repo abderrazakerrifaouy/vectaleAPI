@@ -4,7 +4,7 @@ import jakarta.persistence.*
 import java.time.LocalDate
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "users")
 data class Users(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,19 +23,19 @@ data class Users(
     @Column(name = "DATENAISSANCE", nullable = false)
     val dateNaissance: LocalDate,
 
-    @Column(name = "ADRESSE", nullable = false) // العمود ADRESSE
+    @Column(name = "ADRESSE", nullable = false)
     val adresse: String,
 
-    @Column(name = "CNI", nullable = false, unique = true) // العمود CNI
+    @Column(name = "CNI", nullable = false, unique = true)
     val cni: String,
 
-    @Column(name = "CNE", nullable = false, unique = true) // العمود CNE
+    @Column(name = "CNE", nullable = false, unique = true)
     val cne: String,
 
-    @Column(name = "USEREMAIL", nullable = false, unique = true) // العمود USEREMAIL
+    @Column(name = "USEREMAIL", nullable = false, unique = true)
     val userEmail: String,
 
-    @Column(name = "USERPASSWORD", nullable = false) // العمود USERPASSWORD
+    @Column(name = "USERPASSWORD", nullable = false) //
     val userPassword: String,
 
     @Column(name = "USERIMG", nullable = false) // العمود USERIMG

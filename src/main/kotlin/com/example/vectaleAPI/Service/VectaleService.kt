@@ -21,8 +21,11 @@ class VectaleService(
     private val packMonthsRepository: PackMonthsRepository
 ) {
     //User
-    fun getUserById(id: Long): Users =
-        usersRepository.findById(id).orElseThrow { Exception("User not found") }
+    fun getUserById(id: Long): Users {
+
+        return usersRepository.findById(id).get()
+    }
+
     fun logIn(email: String, password: String): Long {
         val usr =  usersRepository.findByUserEmailAndUserPassword(email, password)
         return if (usr is Users){
@@ -47,9 +50,14 @@ class VectaleService(
         return cardRepository.findByPack(pack)
     }
 
-    fun createCardService(pack: Pack):Card = cardRepository.save(Card( pack = pack , disponible = false))
+    private fun createCardService(pack: Pack):Card = cardRepository.save(Card( pack = pack , disponible = false))
 
     //PackMonths
 
     fun getPackMonthsById(id : Long): Optional<PackMonths> = packMonthsRepository.findById(id)
+    fun getPackMonthsByIdUser(idUsers: Long): PackMonths? {
+        val pack = packRepository.findByIdUser(idUsers)
+        return packMonthsRepository.getPackMonthsRepositoryByPack(pack)
+    }
+    fun createPackMonth(packMonths: PackMonths):PackMonths = packMonthsRepository.save(packMonths)
 }
